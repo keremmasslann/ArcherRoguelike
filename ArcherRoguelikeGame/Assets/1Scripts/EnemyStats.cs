@@ -6,6 +6,9 @@ public class EnemyStats : MonoBehaviour, IDamageable
 {
     [SerializeField] float maxHealth;
     float currentHealth;
+    [SerializeField] HealthBar healthBar;
+    Canvas worldCanvas;
+    [SerializeField] Collider mainCollider;
     void Start()
     {
         currentHealth = maxHealth;
@@ -19,16 +22,28 @@ public class EnemyStats : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        Destroy(gameObject);
+        Destroy(healthBar.gameObject); //pool ile deactivate edilcek
+        Destroy(gameObject); //pool ile deactivate edilcek
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        Debug.Log("Damage taken: " + damage + "Health left: " + currentHealth);
+        healthBar.UpdateHealthBar(currentHealth,maxHealth);
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    public void SetupCanvas(Canvas canvas)
+    {
+        worldCanvas = canvas;
+        healthBar.transform.SetParent(worldCanvas.transform);
+    }
+
+    public float GetSpawnHeight()
+    {
+        return mainCollider.bounds.size.y / 2;
     }
 }

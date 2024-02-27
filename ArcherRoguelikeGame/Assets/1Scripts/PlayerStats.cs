@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour,IDamageable
 {
     [SerializeField] float maxHealth;
     float currentHealth;
-
+    [SerializeField] HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour,IDamageable
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
         if (currentHealth <= 0)
         {
             Die();

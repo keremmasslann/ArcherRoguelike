@@ -19470,7 +19470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2131489752197622161}
   m_Layer: 0
-  m_Name: ArrowBasic_Impact
+  m_Name: Arrow_Impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

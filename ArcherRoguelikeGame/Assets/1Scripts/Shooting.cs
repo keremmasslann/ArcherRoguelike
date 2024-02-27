@@ -18,10 +18,15 @@ public class Shooting : MonoBehaviour
     [SerializeField] float currentMultiplier = 0;
 
     [Header("Projectile")]
-    [SerializeField] GameObject projectile;
+    GameObject projectile;
     [SerializeField] Transform shootingPos;
     [SerializeField] ParticleSystem muzzle;
     [SerializeField] ParticleSystem powerShotParticle;
+    [SerializeField] float powerShotEffectTime;
+    //  [SerializeField] float powerShotTime;
+    [SerializeField] GameObject projectileBasic;
+    [SerializeField] GameObject projectilePowershot;
+    [SerializeField] GameObject indicatorSet;
 
 
     void Start()
@@ -32,21 +37,21 @@ public class Shooting : MonoBehaviour
         //multiplier daha yavas o yüzden speedi fazla olmalý
         multiplierSpeed = speed;//1 - 0.25f = 0.75 
         indicatorSpeed = (rightObject.transform.position.x - targetRight.transform.position.x) * speed;
-        leftObject.gameObject.SetActive(false);
-        rightObject.gameObject.SetActive(false);
+       
+        indicatorSet.SetActive(false);
     }
 
     void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            leftObject.gameObject.SetActive(true);
-            rightObject.gameObject.SetActive(true);
+          
+            indicatorSet.SetActive(true);
 
             float nextMultiplier = Mathf.MoveTowards(currentMultiplier, 1, Time.deltaTime * multiplierSpeed);
 
             // Check if currentMultiplier is about to become 0.9 in the next frame
-            if (currentMultiplier < 0.85f && nextMultiplier >= 0.85f)
+            if (currentMultiplier < powerShotEffectTime && nextMultiplier >= powerShotEffectTime)
             {
               //  Debug.Log("currentMultiplier is about to reach 0.9");
                 powerShotParticle.Play();
@@ -65,22 +70,26 @@ public class Shooting : MonoBehaviour
             // Reset object positions
             leftObject.localPosition = initialLeftPosition;
             rightObject.localPosition = initialRightPosition;
-            leftObject.gameObject.SetActive(false);
-            rightObject.gameObject.SetActive(false);
+        
+            indicatorSet.SetActive(false);
             // Instantiate projectile or perform other actions
-            if(currentMultiplier > 0.25f)
+            if (currentMultiplier > 0.25f)
             {
+                
+                if(currentMultiplier >= 0.85f && currentMultiplier < 0.99f) //Powershot
+                {
+                    Debug.Log("power shot");
+                    projectile = projectilePowershot;
+                }
+                else
+                {
+                    projectile = projectileBasic;
+                }
                 Vector3 direction = transform.forward;
                 GameObject pr = Instantiate(projectile, shootingPos.position, Quaternion.LookRotation(direction));
                 pr.transform.rotation = Quaternion.LookRotation(direction);
                 pr.GetComponent<Projectile>().SetDamageMultiplier(currentMultiplier);
                 muzzle.Play();
-                if(currentMultiplier >= 0.9 && currentMultiplier < 1)
-              //  if((int)currentMultiplier*10 == 9)
-                {
-                    Debug.Log("power shot");
-                }
-              
             }
             currentMultiplier = 0; // en sonda olmasýna dikkat et
 

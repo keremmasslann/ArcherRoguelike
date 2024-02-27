@@ -24404,7 +24404,7 @@ GameObject:
   - component: {fileID: 6902890617605960455}
   - component: {fileID: 7776819915678806772}
   m_Layer: 6
-  m_Name: ArrowBasic
+  m_Name: Arrow_Basic
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
