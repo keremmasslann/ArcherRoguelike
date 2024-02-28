@@ -8,16 +8,17 @@ public class BasicProjectile : Projectile
     Rigidbody rb;
     float damage;
     [SerializeField] float minimumDamage;
-    void Start()
+
+    
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        MoveProjectile();
+ 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        MoveProjectile();
     }
 
     public override void MoveProjectile()
@@ -36,7 +37,8 @@ public class BasicProjectile : Projectile
 
     public override void DestroyProjectile()
     {
-        Destroy(this.gameObject);
+        // Destroy(this.gameObject);
+        ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -47,9 +49,6 @@ public class BasicProjectile : Projectile
            // Debug.Log("damage:" + damage);
            
         }
-
-       
-
         ContactPoint contact = collision.contacts[0];
         Vector3 contactPoint = contact.point;
         Vector3 contactNormal = contact.normal;
@@ -58,11 +57,13 @@ public class BasicProjectile : Projectile
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contactNormal);
 
         // Instantiate the impact effect at the contact point with the calculated rotation
-        GameObject impactObject = Instantiate(stats.impact, contactPoint, rotation);
+    //    GameObject impactObject = Instantiate(stats.impact, contactPoint, rotation);
+        ObjectPoolManager.SpawnObject(stats.impact, contactPoint, rotation,ObjectPoolManager.PoolType.Gameobject);
 
-        Destroy(impactObject, 2f);
+      //  Destroy(impactObject, 2f);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         DestroyProjectile();
     }
-
    
 }

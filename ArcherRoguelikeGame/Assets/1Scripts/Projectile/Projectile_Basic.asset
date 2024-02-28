@@ -15,5 +15,6 @@ MonoBehaviour:
   speed: 50
   damageHit: 60
   damageExplosion: 0
+  destroyTime: 2
   isExplosive: 0
   impact: {fileID: 4002644628096658016, guid: 1729e8b3ee56a1f4b9163952a976214c, type: 3}

@@ -45,6 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4952054503952514245}
   - component: {fileID: 966466701873172000}
+  - component: {fileID: 7216757816624465131}
   m_Layer: 9
   m_Name: HealthBar_Enemy
   m_TagString: Untagged
@@ -59,7 +60,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3766755108120975001}
-  m_LocalRotation: {x: -0, y: 0.38268343, z: -0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
@@ -87,6 +88,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarFill: {fileID: 8844872682073684872}
+--- !u!114 &7216757816624465131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3766755108120975001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13a9a5f736864f478d0a1f3dbd85b69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  Offset: {x: 0, y: 0, z: 0}
 --- !u!1 &4634671470928952322
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +129,7 @@ RectTransform:
   m_GameObject: {fileID: 4634671470928952322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.027225645, y: 0.004428411, z: 0.01705941}
+  m_LocalScale: {x: 0.023523074, y: 0.0018299225, z: 0.01705941}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4952054503952514245}
@@ -189,7 +204,7 @@ RectTransform:
   m_GameObject: {fileID: 5893144394269161696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.028929602, y: 0.00593832, z: 0.017679013}
+  m_LocalScale: {x: 0.024399517, y: 0.0025509144, z: 0.017679013}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4952054503952514245}

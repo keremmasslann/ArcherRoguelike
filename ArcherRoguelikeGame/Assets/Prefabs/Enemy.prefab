@@ -205,9 +205,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c321aba5c43f534682dbeedb8a78505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 150
   healthBar: {fileID: 6748888179739086403}
   mainCollider: {fileID: 7313353129872045429}
+  dmgNumberOjbect: {fileID: 8574129645638432032, guid: bedd02c008faa4c45a6d67def25d364b,
+    type: 3}
 --- !u!1001 &5819013912041521251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -320,6 +322,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216757816624465131, guid: 3d6dc15abaf5fd14084fa1646e6e8f82,
+        type: 3}
+      propertyPath: Target
+      value: 
+      objectReference: {fileID: 6173917459092304479}
+    - target: {fileID: 7216757816624465131, guid: 3d6dc15abaf5fd14084fa1646e6e8f82,
+        type: 3}
+      propertyPath: Offset.y
+      value: 2.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

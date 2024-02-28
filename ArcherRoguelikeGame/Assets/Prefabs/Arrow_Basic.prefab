@@ -6240,7 +6240,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.19689086, b: 0.16911763, a: 0}
-        key1: {r: 1, g: 0.39394557, b: 0.19117647, a: 1}
+        key1: {r: 1, g: 0.5241253, b: 0.19215685, a: 1}
         key2: {r: 1, g: 0.19689086, b: 0.16911763, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -6264,13 +6264,13 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 3
         m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.37741682, b: 0.16911763, a: 0}
-        key1: {r: 1, g: 0.21821235, b: 0.19117647, a: 1}
+        key1: {r: 1, g: 0.40094414, b: 0.19215685, a: 1}
         key2: {r: 1, g: 0.37741682, b: 0.16911763, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -6294,7 +6294,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 3
         m_NumAlphaKeys: 3
   UVModule:
@@ -24403,6 +24403,7 @@ GameObject:
   - component: {fileID: 6873872383621058166}
   - component: {fileID: 6902890617605960455}
   - component: {fileID: 7776819915678806772}
+  - component: {fileID: -347799444884477349}
   m_Layer: 6
   m_Name: Arrow_Basic
   m_TagString: Projectile
@@ -24489,3 +24490,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 77bb80fdcb5b6d6478101a2e0d688f11, type: 2}
   minimumDamage: 20
+--- !u!114 &-347799444884477349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289899250299199729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0d91997aba9374482d56ce232ef280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToReturnPool: 1.5

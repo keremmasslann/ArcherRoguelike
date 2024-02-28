@@ -39,4 +39,5 @@ public class PlayerStats : MonoBehaviour,IDamageable
             Die();
         }
     }
+
 }

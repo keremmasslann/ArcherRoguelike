@@ -29,6 +29,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] GameObject indicatorSet;
 
 
+
     void Start()
     {
         // Store initial positions
@@ -76,20 +77,31 @@ public class Shooting : MonoBehaviour
             if (currentMultiplier > 0.25f)
             {
                 
-                if(currentMultiplier >= 0.85f && currentMultiplier < 0.99f) //Powershot
+                if(currentMultiplier >= 0.85f && currentMultiplier < 0.99f) //Power shot
                 {
                     Debug.Log("power shot");
                     projectile = projectilePowershot;
+
+                    Vector3 direction = transform.forward;
+                  //  GameObject pr = Instantiate(projectile, shootingPos.position, Quaternion.LookRotation(direction));
+                    GameObject pr = ObjectPoolManager.SpawnObject(projectile, shootingPos.position, Quaternion.LookRotation(direction),ObjectPoolManager.PoolType.Gameobject);
+
+                    pr.transform.rotation = Quaternion.LookRotation(direction);
+                    pr.GetComponent<Projectile>().SetDamageMultiplier(1); //damage powershot projectile'in kendi damagei
+                    muzzle.Play();
                 }
-                else
+                else //Normal shot
                 {
                     projectile = projectileBasic;
+
+                    Vector3 direction = transform.forward;
+                 //   GameObject pr = Instantiate(projectile, shootingPos.position, Quaternion.LookRotation(direction));
+                    GameObject pr = ObjectPoolManager.SpawnObject(projectile, shootingPos.position, Quaternion.LookRotation(direction), ObjectPoolManager.PoolType.Gameobject);
+                    pr.transform.rotation = Quaternion.LookRotation(direction);
+                    pr.GetComponent<Projectile>().SetDamageMultiplier(currentMultiplier); //damage calculated with multiplier
+                    muzzle.Play();
                 }
-                Vector3 direction = transform.forward;
-                GameObject pr = Instantiate(projectile, shootingPos.position, Quaternion.LookRotation(direction));
-                pr.transform.rotation = Quaternion.LookRotation(direction);
-                pr.GetComponent<Projectile>().SetDamageMultiplier(currentMultiplier);
-                muzzle.Play();
+               
             }
             currentMultiplier = 0; // en sonda olmasýna dikkat et
 

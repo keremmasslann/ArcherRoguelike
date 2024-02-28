@@ -5,8 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] Transform[] positions;
-    [SerializeField] GameObject enemy;
-
+    [SerializeField] GameObject enemyObject;
     [SerializeField] Canvas canvasWorld;
 //    [SerializeField] Transform player;
     void Start()
@@ -31,12 +30,12 @@ public class EnemySpawner : MonoBehaviour
     {
         int x = Random.Range(0, positions.Length);
        // GameObject en = Instantiate(enemy, positions[x].position + new Vector3(0, .75f, 0), Quaternion.identity);
-        GameObject en = Instantiate(enemy, positions[x].position , Quaternion.identity);
+        GameObject en = Instantiate(enemyObject, positions[x].position , Quaternion.identity);
         //     Collider col = en.GetComponent<Collider>();
         //     float enemyY = col.bounds.size.y/2;
-        EnemyStats enemyStats = en.GetComponent<EnemyStats>();
-        en.transform.position += new Vector3(0, enemyStats.GetSpawnHeight(), 0);
-        enemyStats.SetupCanvas(canvasWorld);
+        Enemy enemy = en.GetComponent<Enemy>();
+        en.transform.position += new Vector3(0, enemy.GetSpawnHeight(), 0);
+        enemy.SetupCanvas(canvasWorld);
         //     Debug.Log(enemyY);
         //  en.GetComponent<Enemy>().SetupHealthbar(canvas, cam);
 
@@ -47,12 +46,12 @@ public class EnemySpawner : MonoBehaviour
     {
    
         // GameObject en = Instantiate(enemy, positions[x].position + new Vector3(0, .75f, 0), Quaternion.identity);
-        GameObject en = Instantiate(enemy, new Vector3(3*x,0,3*x), Quaternion.identity);
+        GameObject en = Instantiate(enemyObject, new Vector3(3*x,0,3*x), Quaternion.identity);
         //     Collider col = en.GetComponent<Collider>();
         //     float enemyY = col.bounds.size.y/2;
-        EnemyStats enemyStats = en.GetComponent<EnemyStats>();
-        en.transform.position += new Vector3(0, enemyStats.GetSpawnHeight(), 0);
-        enemyStats.SetupCanvas(canvasWorld);
+        Enemy enemy = en.GetComponent<Enemy>();
+        en.transform.position += new Vector3(0, enemy.GetSpawnHeight(), 0);
+        enemy.SetupCanvas(canvasWorld);
         //     Debug.Log(enemyY);
         //  en.GetComponent<Enemy>().SetupHealthbar(canvas, cam);
 
