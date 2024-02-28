@@ -121,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         {
             dashTimer += Time.deltaTime;
             PerformDash();
+            Debug.Log("Is dashing");
         }
     }
 
@@ -144,7 +145,8 @@ public class PlayerMovement : MonoBehaviour
             }
             //      StartCoroutine(StartDashCooldown());
             //     dashEffect.Play();
-            dashTimer = 0f;
+                        dashTimer = 0f;
+    //        StartCoroutine(IsDashing());
             hasDashed = true;
             isDashing = true;
             //       timeStartedDash = Time.time;
@@ -162,10 +164,23 @@ public class PlayerMovement : MonoBehaviour
             EndDash();
         } */
 
-        if (dashTimer >= dashLength)
+       if (dashTimer >= dashLength)
         {
             EndDash();
         }
+    }
+
+    IEnumerator IsDashing()
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < dashLength)
+        {
+            elapsedTime += Time.deltaTime;
+            isDashing = true;
+            yield return null;
+        }
+
+        EndDash();
     }
 
     private void EndDash()

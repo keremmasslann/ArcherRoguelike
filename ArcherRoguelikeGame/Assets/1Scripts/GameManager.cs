@@ -30,5 +30,23 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            StartCoroutine(Cooldown());
+        }
+    }
+
+    IEnumerator Cooldown()
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < 2)
+        {
+            elapsedTime += Time.deltaTime;
+            Debug.Log(":D");
+            yield return null;
+        }
+
+       
     }
 }

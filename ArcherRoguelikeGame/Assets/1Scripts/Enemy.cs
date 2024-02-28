@@ -12,6 +12,7 @@ public class Enemy: MonoBehaviour, IDamageable //Enemy superclass
     [SerializeField] Collider mainCollider;
     [Header("Damage Numbers")]
     [SerializeField] GameObject dmgNumberOjbect;
+    [SerializeField] float dmgNumbersOffsetY;
     void Start()
     {
         currentHealth = maxHealth;
@@ -30,7 +31,7 @@ public class Enemy: MonoBehaviour, IDamageable //Enemy superclass
         healthBar.UpdateHealthBar(currentHealth,maxHealth);
         //damage popup
 
-        ShowDamageNumber(damage);
+        SpawnDamageNumber(damage);
 
         if (currentHealth <= 0)
         {
@@ -49,14 +50,16 @@ public class Enemy: MonoBehaviour, IDamageable //Enemy superclass
         return mainCollider.bounds.size.y / 2;
     }
 
-    public void ShowDamageNumber(float dmg)
+    public void SpawnDamageNumber(float dmg)
     {
-        float x = Random.Range(0, 1.5f);
-        float y = Random.Range(2.5f, 3.5f);
+     //   float x = Random.Range(0, 1.5f);
+     //   float y = Random.Range(2.5f, 3.5f);
    //     GameObject dmgNumber = Instantiate(dmgNumberOjbect, transform.position + new Vector3(x, y, 0), Quaternion.identity);
-        GameObject dmgNumber = ObjectPoolManager.SpawnObject(dmgNumberOjbect, transform.position + new Vector3(x, y, 0), Quaternion.identity);
+        GameObject dmgNumber = ObjectPoolManager.SpawnObject(dmgNumberOjbect, transform.position + new Vector3(0, dmgNumbersOffsetY, 0), Quaternion.identity);
         dmgNumber.GetComponentInChildren<TMP_Text>().text = dmg.ToString("F0");
         dmgNumber.transform.SetParent(worldCanvas.transform);
-    //    Destroy(dmgNumber, 1.5f);
+        //    Destroy(dmgNumber, 1.5f);
+       // dmgNumber.transform.DOMove(dmgNumber.transform.position + new Vector3(0, 1, 0), 1);
+       // dmgNumber.transform.DOScale(0.55f, 1f);
     }
 }
