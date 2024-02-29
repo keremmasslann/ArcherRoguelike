@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "9524dd58-ae96-4124-b129-44d75c3bcf8b",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "626f883b-4576-46dd-92d9-fbbaeef1bc00",
@@ -111,19 +102,19 @@
                 },
                 {
                     "name": "",
-                    "id": "403070c9-4888-4f93-91b1-aa535603b2d1",
-                    "path": "<Mouse>/delta",
+                    "id": "b86ef6b6-6e98-4e9c-819a-d6d5337a06a4",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Look",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b86ef6b6-6e98-4e9c-819a-d6d5337a06a4",
-                    "path": "<Mouse>/leftButton",
+                    "id": "efee89f0-751b-467c-a706-09ad0531c3a5",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

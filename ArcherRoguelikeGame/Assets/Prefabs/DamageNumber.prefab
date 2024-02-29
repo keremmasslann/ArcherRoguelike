@@ -49,13 +49,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9614e53ca07294aae20725265797d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToReturnPool: 0.85
+  timeToReturnPool: 0.75
+  waitTimeBeforeEffects: 0.2
+  moveSpeed: 1
   targetScale: 0.65
   scaleTime: 1
   rect: {fileID: 6391860047119251933}
   targetAlpha: 0
   colorTime: 1
   text: {fileID: 3565610943210725340}
+  fadeDelay: 0.15
 --- !u!1 &8612852250668990744
 GameObject:
   m_ObjectHideFlags: 0

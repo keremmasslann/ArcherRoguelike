@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour,IDamageable
 {
     [SerializeField] float maxHealth;
     float currentHealth;
     [SerializeField] HealthBar healthBar;
+    [SerializeField] TMP_Text healthText;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,7 @@ public class PlayerStats : MonoBehaviour,IDamageable
     {
         currentHealth -= damage;
         healthBar.UpdateHealthBar(currentHealth, maxHealth);
+        healthText.text = currentHealth + " / " + maxHealth;
         if (currentHealth <= 0)
         {
             Die();

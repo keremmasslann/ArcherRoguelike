@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
+    [SerializeField] PlayerInput playerInput;
     [Header("Indicator")]
     [SerializeField] float speed;
     [SerializeField] float indicatorSpeed;
@@ -27,7 +29,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] GameObject projectileBasic;
     [SerializeField] GameObject projectilePowershot;
     [SerializeField] GameObject indicatorSet;
-
+    bool holdingMouse;
 
 
     void Start()
@@ -38,15 +40,19 @@ public class Shooting : MonoBehaviour
         //multiplier daha yavas o yüzden speedi fazla olmalý
         multiplierSpeed = speed;//1 - 0.25f = 0.75 
         indicatorSpeed = (rightObject.transform.position.x - targetRight.transform.position.x) * speed;
-       
+
         indicatorSet.SetActive(false);
+
+        playerInput.actions["Shoot"].performed += HoldingMouse;
+        playerInput.actions["Shoot"].canceled += NotHoldingMouse;
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        //  if (Input.GetMouseButton(0))
+        if (holdingMouse)
         {
-          
+
             indicatorSet.SetActive(true);
 
             float nextMultiplier = Mathf.MoveTowards(currentMultiplier, 1, Time.deltaTime * multiplierSpeed);
@@ -54,7 +60,7 @@ public class Shooting : MonoBehaviour
             // Check if currentMultiplier is about to become 0.9 in the next frame
             if (currentMultiplier < powerShotEffectTime && nextMultiplier >= powerShotEffectTime)
             {
-              //  Debug.Log("currentMultiplier is about to reach 0.9");
+                //  Debug.Log("currentMultiplier is about to reach 0.9");
                 powerShotParticle.Play();
             }
 
@@ -62,29 +68,30 @@ public class Shooting : MonoBehaviour
             leftObject.position = Vector3.MoveTowards(leftObject.position, targetLeft.position, Time.deltaTime * indicatorSpeed);
             rightObject.position = Vector3.MoveTowards(rightObject.position, targetRight.position, Time.deltaTime * indicatorSpeed);
 
-          
-           
+
+
 
         }
-        else if (Input.GetMouseButtonUp(0))
+        // else if (Input.GetMouseButtonUp(0))
+        else if (!holdingMouse)
         {
             // Reset object positions
             leftObject.localPosition = initialLeftPosition;
             rightObject.localPosition = initialRightPosition;
-        
+
             indicatorSet.SetActive(false);
             // Instantiate projectile or perform other actions
             if (currentMultiplier > 0.25f)
             {
-                
-                if(currentMultiplier >= 0.85f && currentMultiplier < 0.99f) //Power shot
+
+                if (currentMultiplier >= 0.85f && currentMultiplier < 0.99f) //Power shot
                 {
                     Debug.Log("power shot");
                     projectile = projectilePowershot;
 
                     Vector3 direction = transform.forward;
-                  //  GameObject pr = Instantiate(projectile, shootingPos.position, Quaternion.LookRotation(direction));
-                    GameObject pr = ObjectPoolManager.SpawnObject(projectile, shootingPos.position, Quaternion.LookRotation(direction),ObjectPoolManager.PoolType.Gameobject);
+                    //  GameObject pr = Instantiate(projectile, shootingPos.position, Quaternion.LookRotation(direction));
+                    GameObject pr = ObjectPoolManager.SpawnObject(projectile, shootingPos.position, Quaternion.LookRotation(direction), ObjectPoolManager.PoolType.Gameobject);
 
                     pr.transform.rotation = Quaternion.LookRotation(direction);
                     pr.GetComponent<Projectile>().SetDamageMultiplier(1); //damage powershot projectile'in kendi damagei
@@ -95,16 +102,28 @@ public class Shooting : MonoBehaviour
                     projectile = projectileBasic;
 
                     Vector3 direction = transform.forward;
-                 //   GameObject pr = Instantiate(projectile, shootingPos.position, Quaternion.LookRotation(direction));
+                    //   GameObject pr = Instantiate(projectile, shootingPos.position, Quaternion.LookRotation(direction));
                     GameObject pr = ObjectPoolManager.SpawnObject(projectile, shootingPos.position, Quaternion.LookRotation(direction), ObjectPoolManager.PoolType.Gameobject);
                     pr.transform.rotation = Quaternion.LookRotation(direction);
                     pr.GetComponent<Projectile>().SetDamageMultiplier(currentMultiplier); //damage calculated with multiplier
                     muzzle.Play();
                 }
-               
+
             }
             currentMultiplier = 0; // en sonda olmasýna dikkat et
 
         }
     }
+
+    //input 
+
+    void HoldingMouse(InputAction.CallbackContext context)
+    {
+        holdingMouse = true;
+    }
+    void NotHoldingMouse(InputAction.CallbackContext context)
+    {
+        holdingMouse = false;
+    }
+
 }

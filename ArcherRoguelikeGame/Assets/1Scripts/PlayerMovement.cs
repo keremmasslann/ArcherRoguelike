@@ -15,11 +15,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float verticalMultiplier;
 
     [SerializeField] TMP_Text speedText;
+    PlayerInput dashInput;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         playerInput = GetComponent<PlayerInput>();
+    //    playerInput.actions["Shoot"].performed += StartDash;
     }
 
     // Update is called once per frame
