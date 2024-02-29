@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class PlayerStats : MonoBehaviour,IDamageable
+public class PlayerStats : HealthStats,IDamageable
 {
-    [SerializeField] float maxHealth;
-    float currentHealth;
-    [SerializeField] HealthBar healthBar;
+  //  [SerializeField] float maxHealth;
+  //  float currentHealth;
+//    [SerializeField] HealthBar healthBar;
     [SerializeField] TMP_Text healthText;
-
+    [SerializeField] Canvas canvasW;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        currentHealth = maxHealth;
+        base.Start();
+        SetupCanvas(canvasW);
     }
-
+ 
     // Update is called once per frame
     void Update()
     {
@@ -27,20 +28,26 @@ public class PlayerStats : MonoBehaviour,IDamageable
     }
 
 
-    public void Die()
+    public override void Die()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void TakeDamage(float damage)
+    public override void SetupCanvas(Canvas canvas)
     {
-        currentHealth -= damage;
-        healthBar.UpdateHealthBar(currentHealth, maxHealth);
+        worldCanvas = canvas;
+
+    }
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
         healthText.text = currentHealth + " / " + maxHealth;
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+    }
+
+
+    public override void SpawnDamageNumber(float dmg)
+    {
+        base.SpawnDamageNumber(dmg);
     }
 
 }

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6391860047119251933}
   - component: {fileID: 6883947155550394758}
   m_Layer: 5
-  m_Name: DamageNumber
+  m_Name: DamageNumber_Enemy
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -49,12 +49,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9614e53ca07294aae20725265797d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToReturnPool: 0.75
+  timeToReturnPool: 0.7
   waitTimeBeforeEffects: 0.2
+  activeMove: 1
+  numbers:
+  - 0.25
+  - 0.5
+  - 0.75
+  - 1
+  - -0.25
+  - -0.5
+  - -0.75
+  - -1
   moveSpeed: 1
+  activeScale: 1
   targetScale: 0.65
   scaleTime: 1
   rect: {fileID: 6391860047119251933}
+  activeColor: 1
   targetAlpha: 0
   colorTime: 1
   text: {fileID: 3565610943210725340}

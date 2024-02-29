@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject en = Instantiate(enemyObject, positions[x].position , Quaternion.identity);
         //     Collider col = en.GetComponent<Collider>();
         //     float enemyY = col.bounds.size.y/2;
-        Enemy enemy = en.GetComponent<Enemy>();
+        EnemyStats enemy = en.GetComponent<EnemyStats>();
         en.transform.position += new Vector3(0, enemy.GetSpawnHeight(), 0);
         enemy.SetupCanvas(canvasWorld);
         //     Debug.Log(enemyY);
@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject en = Instantiate(enemyObject, new Vector3(3*x,0,3*x), Quaternion.identity);
         //     Collider col = en.GetComponent<Collider>();
         //     float enemyY = col.bounds.size.y/2;
-        Enemy enemy = en.GetComponent<Enemy>();
+        EnemyStats enemy = en.GetComponent<EnemyStats>();
         en.transform.position += new Vector3(0, enemy.GetSpawnHeight(), 0);
         enemy.SetupCanvas(canvasWorld);
         //     Debug.Log(enemyY);

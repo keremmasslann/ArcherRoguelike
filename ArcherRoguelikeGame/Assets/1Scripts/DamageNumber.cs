@@ -6,25 +6,30 @@ using TMPro;
 
 public class DamageNumber : MonoBehaviour
 {
-    float[] numbers = { 0.25f, 0.5f, 0.75f, 1f, -0.25f, -0.5f, -0.75f, -1f };
+
     [SerializeField] float timeToReturnPool;
     [SerializeField] float waitTimeBeforeEffects;
 
     [Header("Move")]
+    [SerializeField] bool activeMove = true;
+    [SerializeField] float[] numbers = { 0.25f, 0.5f, 0.75f, 1f, -0.25f, -0.5f, -0.75f, -1f };
     [SerializeField] float moveSpeed;
 
     [Header("Scale")]
+    [SerializeField] bool activeScale = true;
     [SerializeField] float targetScale;
     [SerializeField] float scaleTime;
     [SerializeField] RectTransform rect;
     Vector3 startScale;
 
     [Header("Color")]
+    [SerializeField] bool activeColor = true;
     [SerializeField] float targetAlpha;
     [SerializeField] float colorTime;
     [SerializeField] TMP_Text text;
     Color startColor;
     [SerializeField] float fadeDelay;
+
 
 
 
@@ -38,16 +43,16 @@ public class DamageNumber : MonoBehaviour
     {
         StartCoroutine(DelayedEffects());
 
-    /*    DOTween.Sequence()
-            .AppendInterval(waitTimeBeforeEffects)
-            .Append(transform.DOMove(transform.position + new Vector3(numbers[randomNumber], 1f, 0f).ToIso(), 1))
-            .Append(transform.DOScale(targetScale, scaleTime))
-            .Append(text.DOFade(targetAlpha, colorTime));
-             StartCoroutine(ReturnToPoolandResetEffects()); */
+        /*    DOTween.Sequence()
+                .AppendInterval(waitTimeBeforeEffects)
+                .Append(transform.DOMove(transform.position + new Vector3(numbers[randomNumber], 1f, 0f).ToIso(), 1))
+                .Append(transform.DOScale(targetScale, scaleTime))
+                .Append(text.DOFade(targetAlpha, colorTime));
+                 StartCoroutine(ReturnToPoolandResetEffects()); */
 
 
 
-        
+
         /*    transform.DOMove(transform.position + new Vector3(numbers[randomNumber], 1f, 0f).ToIso(), 1); //EN SON BUYDU
             transform.DOScale(targetScale, scaleTime); //scale deðil de tmp_text font size deðiþtirsek daha iyi olabilir
             text.DOFade(targetAlpha, colorTime);  
@@ -58,13 +63,25 @@ public class DamageNumber : MonoBehaviour
     {
 
         yield return new WaitForSeconds(waitTimeBeforeEffects);
-        int randomNumber = Random.Range(0, numbers.Length);
-        transform.DOMove(transform.position + new Vector3(numbers[randomNumber], 1f, 0f).ToIso(), moveSpeed).SetSpeedBased(true); //30fps test et ya da chatggpt sor
-        transform.DOScale(targetScale, scaleTime); //scale deðil de tmp_text font size deðiþtirsek daha iyi olabilir
+        if (activeMove)
+        {
+            int randomNumber = Random.Range(0, numbers.Length);
+            transform.DOMove(transform.position + new Vector3(numbers[randomNumber], 1f, 0f).ToIso(), moveSpeed).SetSpeedBased(true);
+        }
+
+        if (activeScale)
+        {
+            transform.DOScale(targetScale, scaleTime); //scale deðil de tmp_text font size deðiþtirsek daha iyi olabilir
+        }
 
         yield return new WaitForSeconds(fadeDelay); // Additional delay before fading
-        text.DOFade(targetAlpha, colorTime);
-     
+
+        if (activeColor)
+        {
+            text.DOFade(targetAlpha, colorTime);
+        }
+    
+
         StartCoroutine(ReturnToPoolandResetEffects());
     }
     IEnumerator ReturnToPoolandResetEffects()
@@ -79,7 +96,7 @@ public class DamageNumber : MonoBehaviour
         text.DOKill();
         rect.localScale = startScale;
         text.color = startColor;
-        
+
         ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
 }
