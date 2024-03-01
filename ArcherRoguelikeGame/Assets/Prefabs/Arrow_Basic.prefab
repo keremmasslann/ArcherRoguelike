@@ -24489,6 +24489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 77bb80fdcb5b6d6478101a2e0d688f11, type: 2}
+  rb: {fileID: 6873872383621058166}
   minimumDamage: 20
 --- !u!114 &-347799444884477349
 MonoBehaviour:

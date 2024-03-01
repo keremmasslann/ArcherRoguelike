@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c321aba5c43f534682dbeedb8a78505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
+  maxHealth: 500
   healthBar: {fileID: 6748888179739086403}
   dmgNumberOjbect: {fileID: 8574129645638432032, guid: bedd02c008faa4c45a6d67def25d364b,
     type: 3}

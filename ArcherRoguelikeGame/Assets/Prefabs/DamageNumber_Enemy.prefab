@@ -51,6 +51,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToReturnPool: 0.7
   waitTimeBeforeEffects: 0.2
+  minSize: 0.2
+  maxSize: 1
+  sizeMultiplier: 0.008
   activeMove: 1
   numbers:
   - 0.25

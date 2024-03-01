@@ -94,7 +94,7 @@ public class Shooting : MonoBehaviour
                     GameObject pr = ObjectPoolManager.SpawnObject(projectile, shootingPos.position, Quaternion.LookRotation(direction), ObjectPoolManager.PoolType.Gameobject);
 
                     pr.transform.rotation = Quaternion.LookRotation(direction);
-                    pr.GetComponent<Projectile>().SetDamageMultiplier(1); //damage powershot projectile'in kendi damagei
+                   // pr.GetComponent<Projectile>().SetDamageMultiplier(1); //damage powershot projectile'in kendi damagei
                     muzzle.Play();
                 }
                 else //Normal shot

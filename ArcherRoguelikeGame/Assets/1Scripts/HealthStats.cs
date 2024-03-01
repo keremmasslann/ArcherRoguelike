@@ -14,6 +14,7 @@ public abstract class HealthStats : MonoBehaviour, IDamageable
     [SerializeField] float dmgNumbersOffsetX;
     [SerializeField] float dmgNumbersOffsetY;
 
+    public bool immuneToExplosion { get ; set; }
 
     protected virtual void Start()
     {
@@ -40,14 +41,15 @@ public abstract class HealthStats : MonoBehaviour, IDamageable
     public virtual void SetupCanvas(Canvas canvas)
     {
         worldCanvas = canvas;
-    
-
     }
 
     public virtual void SpawnDamageNumber(float dmg)
     {     
         GameObject dmgNumber = ObjectPoolManager.SpawnObject(dmgNumberOjbect, transform.position + new Vector3(dmgNumbersOffsetX, dmgNumbersOffsetY, 0).ToIso(), Quaternion.identity);
-        dmgNumber.GetComponentInChildren<TMP_Text>().text = dmg.ToString("F0");
+        // dmgNumber.GetComponentInChildren<TMP_Text>().text = dmg.ToString("F0");
+        DamageNumber damageNumber = dmgNumber.GetComponent<DamageNumber>();
+        damageNumber.text.text = dmg.ToString("F0");
+        damageNumber.SetCurrentDamage(dmg);
         dmgNumber.transform.SetParent(worldCanvas.transform);
     }
 }

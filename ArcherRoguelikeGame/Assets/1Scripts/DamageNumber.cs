@@ -6,7 +6,7 @@ using TMPro;
 
 public class DamageNumber : MonoBehaviour
 {
-
+    float currentDamage;
     [SerializeField] float timeToReturnPool;
     [SerializeField] float waitTimeBeforeEffects;
 
@@ -26,7 +26,7 @@ public class DamageNumber : MonoBehaviour
     [SerializeField] bool activeColor = true;
     [SerializeField] float targetAlpha;
     [SerializeField] float colorTime;
-    [SerializeField] TMP_Text text;
+    [HideInInspector] public TMP_Text text;
     Color startColor;
     [SerializeField] float fadeDelay;
 
@@ -39,10 +39,19 @@ public class DamageNumber : MonoBehaviour
         startScale = rect.transform.localScale;
     }
 
+    public void SetCurrentDamage(float dmg)
+    {
+        currentDamage = dmg;
+        Debug.Log(currentDamage);
+    }
+
+  
     private void OnEnable()
     {
+    
         StartCoroutine(DelayedEffects());
-
+   
+       
         /*    DOTween.Sequence()
                 .AppendInterval(waitTimeBeforeEffects)
                 .Append(transform.DOMove(transform.position + new Vector3(numbers[randomNumber], 1f, 0f).ToIso(), 1))

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public interface IDamageable
 {
-  //  float maxHealth { get; set; } //???
-  //  float currentHealth { get; set; }
+    //  float maxHealth { get; set; } //???
+    //  float currentHealth { get; set; }
+    bool immuneToExplosion { get; set; }
     void TakeDamage(float damage);
 
     void Die();
