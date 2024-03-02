@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EnemyStats: HealthStats, IDamageable //Enemy superclass
+public class EnemyStats: HealthStats, IDamageable, ISwappable //Enemy superclass //artýk deðil?
 {
    // [SerializeField] float maxHealth;
    // float currentHealth;
  //   [SerializeField] HealthBar healthBar;
  //   Canvas worldCanvas;
     [SerializeField] Collider mainCollider;
-  //  [Header("Damage Numbers")]
-   // [SerializeField] GameObject dmgNumberOjbect;
-   // [SerializeField] float dmgNumbersOffsetY;
+    //  [Header("Damage Numbers")]
+    // [SerializeField] GameObject dmgNumberOjbect;
+    // [SerializeField] float dmgNumbersOffsetY;
+    public float tpPosY;
+    public float teleportPosY { get { return tpPosY; } }
     protected override void Start()
     {
         base.Start();

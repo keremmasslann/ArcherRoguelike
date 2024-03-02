@@ -31,6 +31,9 @@ public class Shooting : MonoBehaviour
     [SerializeField] GameObject indicatorSet;
     bool holdingMouse;
 
+    [SerializeField] float shootCooldown;
+    float lastShootTime;
+
 
     void Start()
     {
@@ -49,7 +52,14 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        //  if (Input.GetMouseButton(0))
+        if(lastShootTime + shootCooldown < Time.time)
+        {
+            ShootArrow();
+        }       
+    }
+
+    void ShootArrow()
+    {
         if (holdingMouse)
         {
 
@@ -67,10 +77,6 @@ public class Shooting : MonoBehaviour
             currentMultiplier = Mathf.MoveTowards(currentMultiplier, 1, Time.deltaTime * multiplierSpeed);
             leftObject.position = Vector3.MoveTowards(leftObject.position, targetLeft.position, Time.deltaTime * indicatorSpeed);
             rightObject.position = Vector3.MoveTowards(rightObject.position, targetRight.position, Time.deltaTime * indicatorSpeed);
-
-
-
-
         }
         // else if (Input.GetMouseButtonUp(0))
         else if (!holdingMouse)
@@ -83,7 +89,6 @@ public class Shooting : MonoBehaviour
             // Instantiate projectile or perform other actions
             if (currentMultiplier > 0.25f)
             {
-
                 if (currentMultiplier >= 0.85f && currentMultiplier < 0.99f) //Power shot
                 {
                     Debug.Log("power shot");
@@ -94,7 +99,7 @@ public class Shooting : MonoBehaviour
                     GameObject pr = ObjectPoolManager.SpawnObject(projectile, shootingPos.position, Quaternion.LookRotation(direction), ObjectPoolManager.PoolType.Gameobject);
 
                     pr.transform.rotation = Quaternion.LookRotation(direction);
-                   // pr.GetComponent<Projectile>().SetDamageMultiplier(1); //damage powershot projectile'in kendi damagei
+                    // pr.GetComponent<Projectile>().SetDamageMultiplier(1); //damage powershot projectile'in kendi damagei
                     muzzle.Play();
                 }
                 else //Normal shot
@@ -108,6 +113,8 @@ public class Shooting : MonoBehaviour
                     pr.GetComponent<Projectile>().SetDamageMultiplier(currentMultiplier); //damage calculated with multiplier
                     muzzle.Play();
                 }
+
+                lastShootTime = Time.time;
 
             }
             currentMultiplier = 0; // en sonda olmasýna dikkat et

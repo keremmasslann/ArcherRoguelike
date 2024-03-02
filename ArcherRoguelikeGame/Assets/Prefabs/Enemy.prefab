@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1183514591074033988}
   - component: {fileID: 3076473040510411097}
   - component: {fileID: 4695909983235788767}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8424587164684772396}
   - component: {fileID: 7313353129872045429}
   - component: {fileID: 6514314972582025488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,7 @@ Transform:
   m_Children:
   - {fileID: 1183514591074033988}
   - {fileID: 1475053152880098470}
+  - {fileID: 6135478092743843400}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3717889727616604631
@@ -212,6 +213,60 @@ MonoBehaviour:
   dmgNumbersOffsetX: 0
   dmgNumbersOffsetY: 3
   mainCollider: {fileID: 7313353129872045429}
+  tpPosY: 1.25
+--- !u!1 &7441349541286492831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6135478092743843400}
+  - component: {fileID: 1359972390058797128}
+  m_Layer: 8
+  m_Name: Swappable_Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6135478092743843400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441349541286492831}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6173917459092304479}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1359972390058797128
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441349541286492831}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5819013912041521251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,10 +275,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6173917459092304479}
     m_Modifications:
+    - target: {fileID: 593769628360170106, guid: 3d6dc15abaf5fd14084fa1646e6e8f82,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3766755108120975001, guid: 3d6dc15abaf5fd14084fa1646e6e8f82,
         type: 3}
       propertyPath: m_Name
       value: HealthBarEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766755108120975001, guid: 3d6dc15abaf5fd14084fa1646e6e8f82,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634671470928952322, guid: 3d6dc15abaf5fd14084fa1646e6e8f82,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4952054503952514245, guid: 3d6dc15abaf5fd14084fa1646e6e8f82,
         type: 3}
@@ -324,6 +394,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5893144394269161696, guid: 3d6dc15abaf5fd14084fa1646e6e8f82,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7216757816624465131, guid: 3d6dc15abaf5fd14084fa1646e6e8f82,
         type: 3}
