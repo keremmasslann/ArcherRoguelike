@@ -53,4 +53,10 @@ public class BasicProjectile : Projectile
     {
         base.HitEffect(col);
     }
+
+    public override void GetKicked(Vector3 dir)
+    {
+        base.GetKicked(dir);
+        rb.velocity = dir * stats.speed;
+    }
 }

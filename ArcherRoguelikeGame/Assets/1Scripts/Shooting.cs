@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] PlayerInput playerInput;
+    PlayerInput playerInput;
     [Header("Indicator")]
     [SerializeField] float speed;
     [SerializeField] float indicatorSpeed;
@@ -37,6 +37,7 @@ public class Shooting : MonoBehaviour
 
     void Start()
     {
+        playerInput = GetComponent<PlayerInput>();
         // Store initial positions
         initialLeftPosition = leftObject.localPosition;
         initialRightPosition = rightObject.localPosition;
@@ -52,10 +53,10 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        if(lastShootTime + shootCooldown < Time.time)
+        if (lastShootTime + shootCooldown < Time.time)
         {
             ShootArrow();
-        }       
+        }
     }
 
     void ShootArrow()

@@ -12,10 +12,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - Projectile
+  - ProjectilePlayer
   - Enemy
-  - 
-  - 
+  - Swappable
+  - ProjectileEnemy
   - 
   - 
   - 

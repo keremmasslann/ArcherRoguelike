@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour, IKickable
 {
     public ProjectileStats stats;
     [SerializeField] protected Rigidbody rb;
@@ -10,6 +10,10 @@ public abstract class Projectile : MonoBehaviour
     private void OnEnable()
     {
         MoveProjectile();
+    }
+    private void OnDisable()
+    {
+        Debug.Log("disabled");
     }
 
     public abstract void MoveProjectile();
@@ -20,7 +24,7 @@ public abstract class Projectile : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
-   
+
     public virtual void HitEffect(Collision col)
     {
         ContactPoint contact = col.contacts[0];
@@ -35,6 +39,16 @@ public abstract class Projectile : MonoBehaviour
         ObjectPoolManager.SpawnObject(stats.impact, contactPoint, rotation, ObjectPoolManager.PoolType.Gameobject);
     }
 
-
-
+    public virtual void GetKicked(Vector3 dir)
+    {
+        Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.LookRotation(dir);
+        SetDamageMultiplier(2);
+   //     gameObject.layer = LayerMask.NameToLayer(stats.playerProjectileLayer); //calýsýyordu bu aslýnda
+       // int newLayerIndex = stats.playerProjectileLayer; //onenableda daha performant olabilir 
+    //    gameObject.layer = LayerMask.NameToLayer(newLayerName);
+        //LAYERI PLAYER PROJ YAP
+        //  transform.forward *= -1;
+        //  rb.velocity *= -1;
+    }
 }

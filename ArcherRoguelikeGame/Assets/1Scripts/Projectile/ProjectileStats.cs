@@ -10,12 +10,13 @@ public class ProjectileStats : ScriptableObject
     public float damageHit; //bunu kullanmýyom tam
     public float destroyTime;
     public GameObject impact;
+    [HideInInspector ]public string playerProjectileLayer = "ProjectilePlayer";
 
     [Header("Explosion")]
     public bool isExplosive;
     public float damageExplosion;
     public float explosionRange;
- 
+
 
 
 

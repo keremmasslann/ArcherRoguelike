@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8422c585f3118ad44882090394939630, type: 3}
-  m_Name: Projectile_Powershot
+  m_Name: Projectile_Enemy
   m_EditorClassIdentifier: 
-  speed: 55
-  damageHit: 80
+  speed: 30
+  damageHit: 20
   destroyTime: 2
-  impact: {fileID: 5814430984364547436, guid: 6b08d29bf456d1741ade21d3656f421e, type: 3}
+  impact: {fileID: 4002644628096658016, guid: 1729e8b3ee56a1f4b9163952a976214c, type: 3}
   playerProjectileLayer: 
   isExplosive: 0
-  damageExplosion: 50
-  explosionRange: 5
+  damageExplosion: 0
+  explosionRange: 0

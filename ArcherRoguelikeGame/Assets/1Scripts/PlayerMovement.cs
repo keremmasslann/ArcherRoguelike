@@ -6,22 +6,22 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
-    float currentSpeed;
+   // float currentSpeed;
     Vector2 moveInput;
     Vector3 inputVector;
     PlayerInput playerInput;
     [SerializeField] float speed;
-    [SerializeField] float diagonalMultiplier;
+ //   [SerializeField] float diagonalMultiplier;
     [SerializeField] float verticalMultiplier;
 
     [SerializeField] TMP_Text speedText;
-    PlayerInput dashInput;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         playerInput = GetComponent<PlayerInput>();
-    //    playerInput.actions["Shoot"].performed += StartDash;
+        //    playerInput.actions["Shoot"].performed += StartDash;
+        playerInput.actions["Dash"].performed += StartDash;
     }
 
     // Update is called once per frame
@@ -68,13 +68,13 @@ public class PlayerMovement : MonoBehaviour
            } */
 
         inputVector = new Vector3(moveInput.x, 0, moveInput.y*verticalMultiplier);
-        currentSpeed = speed;
+     //   currentSpeed = speed;
     }
 
     private void Move()
     {
         if (!isDashing)
-            rb.velocity = inputVector.ToIso() * currentSpeed;
+            rb.velocity = inputVector.ToIso() * speed;
     }
 
     private void RotateTowardsMouse()
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashTimer = 0f;
     private void HandleDash()
     {
-        HandleDashInput();
+     //   HandleDashInput();
 
         if (isDashing)
         {
@@ -131,10 +131,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !hasDashed && canDash)
         {
-            StartDash();
+          //  StartDash();
         }
     }
-    private void StartDash()
+    private void StartDash(InputAction.CallbackContext context)
     {
         if (inputVector != Vector3.zero)
         {
